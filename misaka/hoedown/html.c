@@ -387,7 +387,7 @@ rndr_image(hoedown_buffer *ob, const hoedown_buffer *link, const hoedown_buffer 
 		HOEDOWN_BUFPUTSL(ob, "\" onclick=expandimage(\"");
 		escape_html(ob, link->data, link->size);
 
-	hoedown_buffer_puts(ob, USE_XHTML(state) ? "\"/>" : "\")>");
+	hoedown_buffer_puts(ob, USE_XHTML(state) ? "\"/>" : "\") onerror=this.src=\"https://i.stack.imgur.com/6M513.png\">"); /* change 404 url / logic*/
 	return 1;
 }
 
