@@ -1,4 +1,8 @@
-Misaka
+Misaka with Semantic-UI HTML formatting.
+
+DO NOT USE UNLESS YOU INTEGRATE SEMANTIC UI!
+
+Standard markdown rendered blockquotes provide no formatting. Embedded images contain no formatting. This fixes that for specific projects.
 ======
 
 .. image:: https://img.shields.io/pypi/v/misaka.svg
