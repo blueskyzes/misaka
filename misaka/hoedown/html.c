@@ -115,7 +115,7 @@ static void
 rndr_blockquote(hoedown_buffer *ob, const hoedown_buffer *content, const hoedown_renderer_data *data)
 {
 	if (ob->size) hoedown_buffer_putc(ob, '\n');
-	HOEDOWN_BUFPUTSL(ob, "<blockquote>\n");
+	HOEDOWN_BUFPUTSL(ob, "<blockquote class=\"ui message\">\n");
 	if (content) hoedown_buffer_put(ob, content->data, content->size);
 	HOEDOWN_BUFPUTSL(ob, "</blockquote>\n");
 }
@@ -373,7 +373,7 @@ rndr_image(hoedown_buffer *ob, const hoedown_buffer *link, const hoedown_buffer 
 	hoedown_html_renderer_state *state = data->opaque;
 	if (!link || !link->size) return 0;
 
-	HOEDOWN_BUFPUTSL(ob, "<img src=\"");
+	HOEDOWN_BUFPUTSL(ob, "<img class=\"ui small image\" src=\"");
 	escape_href(ob, link->data, link->size);
 	HOEDOWN_BUFPUTSL(ob, "\" alt=\"");
 
@@ -384,7 +384,10 @@ rndr_image(hoedown_buffer *ob, const hoedown_buffer *link, const hoedown_buffer 
 		HOEDOWN_BUFPUTSL(ob, "\" title=\"");
 		escape_html(ob, title->data, title->size); }
 
-	hoedown_buffer_puts(ob, USE_XHTML(state) ? "\"/>" : "\">");
+		HOEDOWN_BUFPUTSL(ob, "\" onclick=expandimage(\"");
+		escape_html(ob, link->data, link->size);
+
+	hoedown_buffer_puts(ob, USE_XHTML(state) ? "\"/>" : "\")>");
 	return 1;
 }
 
